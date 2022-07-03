@@ -5,7 +5,7 @@ var logger = require('morgan')
 var bodyParser = require('body-parser')
 const mongoose = require('./database/database')
 const cors = require('cors')
-
+var saveData = require('./routes/index')
 var app = express()
 app.use(cors())
 
@@ -23,6 +23,7 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
   next()
 })
+app.use('/save', saveData)
 
 app.get('/', (req, res) => {
   res.json({
