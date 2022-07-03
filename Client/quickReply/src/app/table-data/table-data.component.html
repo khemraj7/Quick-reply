@@ -1,0 +1,70 @@
+<div class="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]=" dataListForm" (ngSubmit)="addData(dataListForm.value)">
+
+            <input class="form-control" type="text" formControlName="name" placeholder="Name">
+            <input class="form-control" type="text" formControlName="description"
+              placeholder="Description">
+            <input class="form-control" type="number" formControlName="size" placeholder="Size">
+
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"
+            (click)="addData(dataListForm.value)">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Size</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let list of listData;let index =index">
+        <td>
+          {{list.name}}
+        </td>
+        <td>
+          {{list.description}}
+        </td>
+        <td>
+          {{list.size}}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteData(index)">
+            Delete
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
